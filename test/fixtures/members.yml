@@ -1,0 +1,31 @@
+one:
+  name: MyString
+  address: MyString
+  birthdate: 2014-09-03
+  left_on: 2014-09-03
+  postal_code: 1479
+  post_office: MyString
+  guardian_1: MyString
+  guardian_2: MyString
+  joined_on: 2014-09-03
+  female: false
+  email: MyString
+  guardian_1_email: MyString
+  guardian_2_email: MyString
+  mobile: MyString
+
+two:
+  name: MyString
+  address: MyString
+  birthdate: 2014-09-03
+  left_on: 2014-09-03
+  postal_code: 1479
+  post_office: MyString
+  guardian_1: MyString
+  guardian_2: MyString
+  joined_on: 2014-09-03
+  female: false
+  email: MyString
+  guardian_1_email: MyString
+  guardian_2_email: MyString
+  mobile: MyString

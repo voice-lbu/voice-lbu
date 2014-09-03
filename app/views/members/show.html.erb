@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @member.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @member.address %>
+</p>
+
+<p>
+  <strong>Birthdate:</strong>
+  <%= @member.birthdate %>
+</p>
+
+<p>
+  <strong>Left on:</strong>
+  <%= @member.left_on %>
+</p>
+
+<p>
+  <strong>Postal code:</strong>
+  <%= @member.postal_code %>
+</p>
+
+<p>
+  <strong>Post office:</strong>
+  <%= @member.post_office %>
+</p>
+
+<p>
+  <strong>Guardian 1:</strong>
+  <%= @member.guardian_1 %>
+</p>
+
+<p>
+  <strong>Guardian 2:</strong>
+  <%= @member.guardian_2 %>
+</p>
+
+<p>
+  <strong>Joined on:</strong>
+  <%= @member.joined_on %>
+</p>
+
+<p>
+  <strong>Female:</strong>
+  <%= @member.female %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @member.email %>
+</p>
+
+<p>
+  <strong>Guardian 1 email:</strong>
+  <%= @member.guardian_1_email %>
+</p>
+
+<p>
+  <strong>Guardian 2 email:</strong>
+  <%= @member.guardian_2_email %>
+</p>
+
+<p>
+  <strong>Mobile:</strong>
+  <%= @member.mobile %>
+</p>
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %>
