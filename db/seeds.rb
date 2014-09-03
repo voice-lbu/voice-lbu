@@ -12,7 +12,11 @@ mem_array.each do |lines|
           post_office: lines[3..-1].find{|l| l =~ /^(\d+) (.*)$/} && $2,
           joined_on: lines[3..-1].find{|l| l =~ /^Innmeldt: (.*)$/} && $1,
           female: lines[3..-1].find{|l| l =~ /^Kjønn: (.*)$/} && $1 == 'Kvinne' || false,
-          email: lines[3..-1].find{|l| l =~ /^EPost: (.*)$/} && $1,
-          mobile: lines[3..-1].find{|l| l =~ /^Mobil\/Faksnr: (.*?)(?:[, \/]+(.*))?$/} && $1,
-          guardian_1_mobile: lines[3..-1].find{|l| l =~ /^Mobil\/Faksnr: (.*?)(?:, (.*))?$/} && $2
+          guardian_1_email: lines[3..-1].find{|l| l =~ /^EPost: (.*?)(?:[, \/]+(.*))?$/} && $1,
+          guardian_2_email: lines[3..-1].find{|l| l =~ /^EPost: (.*?)(?:[, \/]+(.*))?$/} && $2,
+          guardian_1_mobile: lines[3..-1].find{|l| l =~ /^Mobil\/Faksnr: (.*?)(?:(?:, |\/)(.*))?$/} && $1,
+          guardian_2_mobile: lines[3..-1].find{|l| l =~ /^Mobil\/Faksnr: (.*?)(?:(?:, |\/)(.*))?$/} && $2,
+          guardian_1: lines[3..-1].find{|l| l =~ /^Foresatt: (.*?)(?:, (.*))?$/} && $1,
+          guardian_2: lines[3..-1].find{|l| l =~ /^Foresatt: (.*?)(?:, (.*))?$/} && $2,
+          phone: lines[3..-1].find{|l| l =~ /^Tlf: (.*)$/} && $1
 end

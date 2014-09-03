@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140903210338) do
     t.string   "guardian_1_email",  limit: 64
     t.string   "guardian_2_email",  limit: 64
     t.string   "mobile",            limit: 16
+    t.string   "phone",             limit: 16
     t.string   "guardian_1_mobile", limit: 16
     t.string   "guardian_2_mobile", limit: 16
     t.datetime "created_at"

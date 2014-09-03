@@ -1,22 +1,26 @@
-<h1>Listing members</h1>
+<h1>Medlemmer</h1>
 
-<table>
+<table class="table table-condensed table-hover table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Birthdate</th>
-      <th>Left on</th>
-      <th>Postal code</th>
-      <th>Post office</th>
-      <th>Guardian 1</th>
-      <th>Guardian 2</th>
-      <th>Joined on</th>
-      <th>Female</th>
-      <th>Email</th>
-      <th>Guardian 1 email</th>
-      <th>Guardian 2 email</th>
-      <th>Mobile</th>
+      <th>Medlems-nummer</th>
+      <th>Navn</th>
+      <th>Adresse</th>
+      <th>Fødselsdato</th>
+      <th>Utmeldt dato</th>
+      <th>Post-nummer</th>
+      <th>Poststed</th>
+      <!--<th>Mobil</th>-->
+      <th>Innmedlings-dato</th>
+      <th>Kjønn</th>
+      <th>E-post</th>
+      <th>Foresatt 1</th>
+      <th>Foresatt 1 mobil</th>
+      <th>Foresatt 1 e-post</th>
+      <th>Telefon</th>
+      <th>Foresatt 2</th>
+      <th>Foresatt 2 mobil</th>
+      <th>Foresatt 2 e-post</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,20 +28,24 @@
   <tbody>
     <% @members.each do |member| %>
       <tr>
+        <td><%= member.id %></td>
         <td><%= member.name %></td>
         <td><%= member.address %></td>
         <td><%= member.birthdate %></td>
         <td><%= member.left_on %></td>
         <td><%= member.postal_code %></td>
         <td><%= member.post_office %></td>
-        <td><%= member.guardian_1 %></td>
-        <td><%= member.guardian_2 %></td>
+        <!--<td><%= member.mobile %></td>-->
         <td><%= member.joined_on %></td>
-        <td><%= member.female %></td>
+        <td><%= member.female ? 'Jente' : 'Gutt'%></td>
         <td><%= member.email %></td>
+        <td><%= member.guardian_1 %></td>
+        <td><%= member.guardian_1_mobile %></td>
         <td><%= member.guardian_1_email %></td>
+        <td><%= member.phone %></td>
+        <td><%= member.guardian_2 %></td>
+        <td><%= member.guardian_2_mobile %></td>
         <td><%= member.guardian_2_email %></td>
-        <td><%= member.mobile %></td>
         <td><%= link_to 'Show', member %></td>
         <td><%= link_to 'Edit', edit_member_path(member) %></td>
         <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>

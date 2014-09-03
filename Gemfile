@@ -6,6 +6,7 @@ gem 'rails', '~>4.1.5'
 
 gem 'activerecord-jdbcpostgresql-adapter'
 gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
