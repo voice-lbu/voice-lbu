@@ -51,15 +51,19 @@
             -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="<%=:active if params[:action] == 'active'%>"><%=link_to 'Aktive', action: :active %></li>
-            <li class="<%=:active if params[:action] == 'left'%>"><%=link_to 'Utmeldte', action: :left %></li>
-            <li class="<%=:active if params[:action] == 'index'%>"><%=link_to 'Alle', action: :index %></li>
+            <li class="<%=:active if params[:action] == 'active'%>"><%=link_to 'Aktive', controller: :members, action: :active %></li>
+            <li class="<%=:active if params[:action] == 'left'%>"><%=link_to 'Utmeldte', controller: :members, action: :left %></li>
+            <li class="<%=:active if params[:action] == 'index'%>"><%=link_to 'Alle', controller: :members, action: :index %></li>
+            <li><%=link_to 'Logg ut', controller: :sessions, action: :destroy %></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
     <div class="container">
+      <div><%=flash[:alert]%></div>
+      <div><%=flash[:notice]%></div>
+
       <%=yield%>
     </div> <!-- /container -->
 

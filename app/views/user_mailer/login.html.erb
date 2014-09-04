@@ -1,0 +1,13 @@
+<h1>Innlogging til Voice LBU Medlemsregister</h1>
+
+<h1>
+  Hei <%= @user.name %>!
+</h1>
+
+<p>
+  Følge linken under for å komme inn i medlemsregisteret:
+</p>
+
+<p>
+  <%=link_to 'Innlogging', only_path: false, controller: :sessions, action: :new, id: @user.id, hash: @user.password_digest %>
+</p>

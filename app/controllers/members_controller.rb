@@ -2,17 +2,17 @@ class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
 
   def index
-    @members = Member.all
+    @members = Member.all.to_a
     @left = true
   end
 
   def active
-    @members = Member.active.all
+    @members = Member.active.to_a
     render :index
   end
 
   def left
-    @members = Member.left.all
+    @members = Member.left.to_a
     @left = true
     render :index
   end

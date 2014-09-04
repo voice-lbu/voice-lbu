@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903210338) do
+ActiveRecord::Schema.define(version: 20140904105156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20140903210338) do
     t.string   "phone",             limit: 16
     t.string   "guardian_1_mobile", limit: 16
     t.string   "guardian_2_mobile", limit: 16
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name",            limit: 64, null: false
+    t.string   "email",           limit: 64, null: false
+    t.string   "password_digest", limit: 64
+    t.string   "password_salt",   limit: 64
+    t.string   "phone",           limit: 16
     t.datetime "created_at"
     t.datetime "updated_at"
   end
