@@ -1,4 +1,4 @@
-<h1>Medlemmer</h1>
+<h1>Medlemmer (<%=@members.size %>)</h1>
 
 <table class="table table-condensed table-hover table-striped">
   <thead>
@@ -7,11 +7,13 @@
       <th>Navn</th>
       <th>Adresse</th>
       <th>Fødselsdato</th>
-      <th>Utmeldt dato</th>
       <th>Post-nummer</th>
       <th>Poststed</th>
       <!--<th>Mobil</th>-->
       <th>Innmedlings-dato</th>
+      <% if @left %>
+          <th>Utmeldt dato</th>
+      <% end %>
       <th>Kjønn</th>
       <th>E-post</th>
       <th>Foresatt 1</th>
@@ -21,7 +23,7 @@
       <th>Foresatt 2</th>
       <th>Foresatt 2 mobil</th>
       <th>Foresatt 2 e-post</th>
-      <th colspan="3"></th>
+      <!--<th colspan="3"></th>-->
     </tr>
   </thead>
 
@@ -32,11 +34,13 @@
         <td><%= member.name %></td>
         <td><%= member.address %></td>
         <td><%= member.birthdate %></td>
-        <td><%= member.left_on %></td>
         <td><%= member.postal_code %></td>
         <td><%= member.post_office %></td>
         <!--<td><%= member.mobile %></td>-->
         <td><%= member.joined_on %></td>
+        <% if @left %>
+            <td><%= member.left_on %></td>
+        <% end %>
         <td><%= member.female ? 'Jente' : 'Gutt'%></td>
         <td><%= member.email %></td>
         <td><%= member.guardian_1 %></td>
@@ -46,9 +50,9 @@
         <td><%= member.guardian_2 %></td>
         <td><%= member.guardian_2_mobile %></td>
         <td><%= member.guardian_2_email %></td>
-        <td><%= link_to 'Show', member %></td>
-        <td><%= link_to 'Edit', edit_member_path(member) %></td>
-        <td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!--<td><%= link_to 'Show', member %></td>-->
+        <!--<td><%= link_to 'Edit', edit_member_path(member) %></td>-->
+        <!--<td><%= link_to 'Destroy', member, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>
