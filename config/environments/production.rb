@@ -19,7 +19,12 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.eager_load = true
   config.log_formatter = ::Logger::Formatter.new
-  config.log_level = :info
+
+  # config.log_level = :debug
+
+  config.logger = Logger.new(STDOUT)
+  config.logger.level = Logger::DEBUG
+
   config.serve_static_assets = true
   config.i18n.fallbacks = true
 end
