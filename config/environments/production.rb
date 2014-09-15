@@ -7,7 +7,7 @@ Rails.application.configure do
     :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => 'voice-lbu.herokuapp.com',
+    :domain         => 'voice-lbu.heroku.com',
     :authentication => :plain,
   }
   config.active_record.dump_schema_after_migration = false
