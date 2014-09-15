@@ -29,7 +29,7 @@
 
   <tbody>
     <% @members.each do |member| %>
-      <tr>
+      <tr onclick="window.location = '<%=member_path(member)%>'">
         <td><%= member.id %></td>
         <td><%= member.name %></td>
         <td><%= member.address %></td>

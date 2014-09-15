@@ -30,7 +30,6 @@ class SessionsController < ApplicationController
   end
 
   def await_email
-
   end
 
   def create

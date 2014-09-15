@@ -20,6 +20,14 @@ class MembersController < ApplicationController
   def show
   end
 
+  def faktura
+    @member = Member.find(params[:id])
+    invoice = Invoice.new(@member)
+    pdf = invoice.pdf
+    send_data pdf, filename: "#{invoice.title.gsub(/ |\/|\\/, '_')}.pdf",
+        type: 'application/pdf'
+  end
+
   def new
     @member = Member.new
   end
