@@ -35,7 +35,7 @@
               <ul class="nav navbar-nav">
                 <li class="<%= :active if params[:action] == 'active' %>"><%= link_to 'Aktive', controller: :members, action: :active %></li>
                 <li class="<%= :active if params[:action] == 'left' %>"><%= link_to 'Utmeldte', controller: :members, action: :left %></li>
-                <li class="<%= :active if params[:action] == 'index' %>"><%= link_to 'Alle', controller: :members, action: :index %></li>
+                <li class="<%= :active if params[:controller] == 'members' && params[:action] == 'index' %>"><%= link_to 'Alle', controller: :members, action: :index %></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <% if current_user.email == 'uwe@kubosch.no' %>
