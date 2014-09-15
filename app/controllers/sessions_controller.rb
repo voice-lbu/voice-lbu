@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
       if (user = User.find(params[:id]))
         stored_hash = user.password_digest.split('.').first
         if stored_hash == params[:hash]
+          flash.alert = 'Innlogging OK.'
           session[:user_id] = user.id
           redirect_to root_path
         else
@@ -20,7 +21,6 @@ class SessionsController < ApplicationController
   def send_email
     user = User.find_by_email(params[:email])
     if user
-      session[:user_id] = user.id
       UserMailer.login(user).deliver!
       redirect_to :log_in, notice: 'En e-post med innloggingslink er sendt til din e-postadresse.'
     else
