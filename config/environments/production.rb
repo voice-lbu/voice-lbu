@@ -1,13 +1,15 @@
 Rails.application.configure do
+  HOST = 'voice-lbu.heroku.com'
   config.action_controller.perform_caching = true
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = {host: HOST}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :port           => ENV['MAILGUN_SMTP_PORT'],
     :address        => ENV['MAILGUN_SMTP_SERVER'],
     :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
     :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-    :domain         => 'voice-lbu.heroku.com',
+    :domain         => HOST,
     :authentication => :plain,
   }
   config.active_record.dump_schema_after_migration = false
