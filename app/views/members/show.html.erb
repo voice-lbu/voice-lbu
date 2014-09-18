@@ -1,75 +1,75 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Navn:</strong>
   <%= @member.name %>
 </p>
 
 <p>
-  <strong>Address:</strong>
+  <strong>Adresse:</strong>
   <%= @member.address %>
 </p>
 
 <p>
-  <strong>Birthdate:</strong>
+  <strong>Fødselsdato:</strong>
   <%= @member.birthdate %>
 </p>
 
 <p>
-  <strong>Left on:</strong>
+  <strong>Utmeldingsdato:</strong>
   <%= @member.left_on %>
 </p>
 
 <p>
-  <strong>Postal code:</strong>
+  <strong>Postnummer:</strong>
   <%= @member.postal_code %>
 </p>
 
 <p>
-  <strong>Post office:</strong>
+  <strong>Poststed:</strong>
   <%= @member.post_office %>
 </p>
 
 <p>
-  <strong>Guardian 1:</strong>
+  <strong>Foresatt 1:</strong>
   <%= @member.guardian_1 %>
 </p>
 
 <p>
-  <strong>Guardian 2:</strong>
+  <strong>Foresatt 2:</strong>
   <%= @member.guardian_2 %>
 </p>
 
 <p>
-  <strong>Joined on:</strong>
+  <strong>Innmeldingsadato:</strong>
   <%= @member.joined_on %>
 </p>
 
 <p>
-  <strong>Female:</strong>
-  <%= @member.female %>
+  <strong>Kjønn:</strong>
+  <%= @member.female ? 'Jente' : 'Gutt' %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong>E-post:</strong>
   <%= @member.email %>
 </p>
 
 <p>
-  <strong>Guardian 1 email:</strong>
+  <strong>Foresatt 1 e-post:</strong>
   <%= @member.guardian_1_email %>
 </p>
 
 <p>
-  <strong>Guardian 2 email:</strong>
+  <strong>Foresatt 2 e-post:</strong>
   <%= @member.guardian_2_email %>
 </p>
 
 <p>
-  <strong>Mobile:</strong>
+  <strong>Mobiltelefon:</strong>
   <%= @member.mobile %>
 </p>
 
-<%= link_to 'Edit', edit_member_path(@member) %> |
-<%= link_to 'Faktura', controller: 'members', action: 'faktura', id: @member.id %> |
-<%= link_to 'Back', members_path %>
+<%= link_to 'Rediger', edit_member_path(@member), class: 'btn btn-primary' %> |
+<%= link_to 'Medlemsliste', members_path, class: 'btn btn-default' %>
+<%= link_to 'Faktura', {controller: 'members', action: 'faktura', id: @member.id}, class: 'btn btn-danger' %> |

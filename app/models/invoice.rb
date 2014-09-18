@@ -15,6 +15,7 @@ class Invoice
 
   def pdf
     member = @member
+    invoice_no = invoice_no
     Prawn::Document.new page_size: 'A4', page_layout: :portrait,
         bottom_margin: 0.0.cm, left_margin: 0.0.cm do
       draw_text 'Faktura', at: [7.mm, 288.mm], size: 18, style: :bold
@@ -25,19 +26,19 @@ class Invoice
 
       height = 250
       (member.name + "\n" + member.address).split("\n").each_with_index do |line, i|
-        draw_text line, at: [height.mm, 20.mm]
+        draw_text line, at: [20.mm, height.mm]
         height -= 5
       end
 
-      draw_text ORGANIZATION, at: [250.mm, 110.mm]
-      draw_text ADDRESS, at: [245.mm, 110.mm]
-      draw_text POST_ADDRESS, at: [240.mm, 110.mm]
+      draw_text ORGANIZATION, at: [110.mm, 250.mm]
+      draw_text ADDRESS, at: [110.mm, 245.mm]
+      draw_text POST_ADDRESS, at: [110.mm, 240.mm]
 
-      # # draw_text 160, 250, "Ordrenummer #{'%04i' % @order.id}")
-    # draw_text 160, 245, "Fakturanummer #{'%04i' % invoice_no}")
-    # draw_text 160, 240, "Fakturadato #{INVOICE_DATE.strftime('%d.%m.%Y')}")
-    # draw_text 160, 235, "Forfallsdato #{DUE_DATE.strftime('%d.%m.%Y')}")
-    #
+      # draw_text 160, 250, "Ordrenummer #{'%04i' % @order.id}")
+      draw_text "Fakturanummer #{'%04i' % invoice_no}", at: [245.mm, 160.mm]
+      draw_text "Fakturadato #{INVOICE_DATE.strftime('%d.%m.%Y')}", at: [240.mm, 160.mm]
+      draw_text "Forfallsdato #{DUE_DATE.strftime('%d.%m.%Y')}", at: [235.mm, 160.mm]
+
     # height = 211
     # draw_text height, 10, 100, 'Beskrivelse')
     # draw_text height, 110, 130, 'Antall')
