@@ -17,7 +17,7 @@
           <th>Utmeldt dato</th>
       <% end %>
       <th>Kjønn</th>
-      <th>E-post</th>
+      <!--<th>E-post</th>-->
       <th>Foresatt 1</th>
       <% if @show_guardian_2 %>
           <th>Foresatt 2</th>
@@ -42,7 +42,7 @@
             <td><%= member.left_on %></td>
         <% end %>
         <td><%= member.female ? 'Jente' : 'Gutt'%></td>
-        <td><%= member.email %></td>
+        <!--<td><%= member.email %></td>-->
         <td><%= member.guardian_1 %><br/>
         <%= member.guardian_1_mobile %><br/>
         <%= member.guardian_1_email %></td>
