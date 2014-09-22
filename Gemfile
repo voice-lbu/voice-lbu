@@ -18,6 +18,7 @@ gem 'nprogress-rails'
 gem 'prawn'
 gem 'puma'
 gem 'rack-mini-profiler'
+gem 'rails-i18n' # , '~> 4.0.0' # For 4.0.x
 gem 'sass-rails', '~> 4.0.3'
 gem 'therubyrhino'
 gem 'turbolinks'

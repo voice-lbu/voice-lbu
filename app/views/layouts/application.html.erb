@@ -38,6 +38,7 @@
                 <li class="<%= :active if params[:controller] == 'members' && params[:action] == 'index' %>"><%= link_to 'Alle', controller: :members, action: :index %></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
+                <%= link_to 'Nytt medlem', new_member_path, class: 'navbar-left navbar-btn btn btn-primary' %>
                 <% if current_user.email == 'uwe@kubosch.no' %>
                     <li class="<%= :active if params[:controller] == 'users' %>"><%= link_to 'Brukere', controller: :users, action: :index %></li>
                 <% end %>
@@ -49,8 +50,18 @@
     </div>
 
     <div class="container">
-      <div><%=flash[:alert]%></div>
-      <div><%=flash[:notice]%></div>
+      <% if flash[:notice] %>
+          <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <%= flash[:notice] %>
+          </div>
+      <% end %>
+      <% if flash[:alert] %>
+          <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <%= flash[:alert] %>
+          </div>
+      <% end %>
 
       <%=yield%>
     </div> <!-- /container -->

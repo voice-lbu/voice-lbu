@@ -4,6 +4,8 @@ class MembersController < ApplicationController
   def index
     @members = Member.all.to_a
     @left = true
+    @show_phone = @members.any? { |m| !m.phone.blank? }
+    @show_guardian_2 = @members.any? { |m| !m.guardian_1.blank? || !m.guardian_1_email.blank? || !m.guardian_1_mobile.blank? }
   end
 
   def active
@@ -46,7 +48,7 @@ class MembersController < ApplicationController
 
   def update
     if @member.update(member_params)
-      redirect_to @member, notice: 'Member was successfully updated.'
+      redirect_to edit_member_path(@member), notice: 'Oppdatert medlemsinformasjon lagret.'
     else
       render :edit
     end
@@ -65,6 +67,9 @@ class MembersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def member_params
-    params.require(:member).permit(:name, :address, :birthdate, :left_on, :postal_code, :post_office, :guardian_1, :guardian_2, :joined_on, :female, :email, :guardian_1_email, :guardian_2_email, :mobile)
+    params.require(:member).permit(:name, :address, :birthdate, :left_on,
+        :postal_code, :post_office, :guardian_1, :guardian_1_mobile,
+        :guardian_2, :guardian_2_mobile, :joined_on, :female, :email,
+        :guardian_1_email, :guardian_2_email, :mobile, :phone)
   end
 end

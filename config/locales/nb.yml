@@ -1,0 +1,8 @@
+nb:
+  activerecord:
+    models:
+      member: Medlem
+    attributes:
+      member:
+        joined_on: "Innmeldingsdato"
+        guardian_1_mobile: Foresatt 1 mobiltelefon

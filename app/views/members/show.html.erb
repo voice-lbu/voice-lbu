@@ -70,6 +70,10 @@
   <%= @member.mobile %>
 </p>
 
-<%= link_to 'Rediger', edit_member_path(@member), class: 'btn btn-primary' %> |
-<%= link_to 'Medlemsliste', members_path, class: 'btn btn-default' %>
-<%= link_to 'Faktura', {controller: 'members', action: 'faktura', id: @member.id}, class: 'btn btn-danger' %> |
+<%= link_to 'Rediger', edit_member_path(@member), class: 'btn btn-primary' %>
+<%= link_to('Meld ut', member_path(@member, member: {left_on: Date.today.to_s}),
+        class: 'btn btn-danger', method: :patch,
+        data: {confirm: "Er du sikker på at du vil melde ut #{@member.name}"}) unless @member.left_on %>
+<%= link_to 'Faktura', {controller: 'members', action: 'faktura', id: @member.id},
+        class: 'btn btn-success' %>
+<%= link_to 'Medlemsliste', active_members_path, class: 'btn btn-default' %>

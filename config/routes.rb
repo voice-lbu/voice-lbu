@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'aktive' => 'members#active'
+  get 'aktive' => 'members#active', as: :active_members
   get 'brukere' => 'users#index'
   get 'innlogging(/:id/:hash)' => 'sessions#new', as: 'log_in'
   post 'innlogging' => 'sessions#send_email'
