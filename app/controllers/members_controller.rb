@@ -40,7 +40,7 @@ class MembersController < ApplicationController
   def create
     @member = Member.new(member_params)
     if @member.save
-      redirect_to @member, notice: 'Member was successfully created.'
+      redirect_to edit_member_path(@member), notice: 'Member was successfully created.'
     else
       render :new
     end
