@@ -22,7 +22,7 @@ class MembersControllerTest < ActionController::TestCase
       post :create, member: { address: @member.address, birthdate: @member.birthdate, email: @member.email, female: @member.female, guardian_1: @member.guardian_1, guardian_1_email: @member.guardian_1_email, guardian_2: @member.guardian_2, guardian_2_email: @member.guardian_2_email, joined_on: @member.joined_on, left_on: @member.left_on, mobile: @member.mobile, name: @member.name, post_office: @member.post_office, postal_code: @member.postal_code }
     end
 
-    assert_redirected_to member_path(assigns(:member))
+    assert_redirected_to edit_member_path(assigns(:member))
   end
 
   test 'should show member' do
@@ -37,7 +37,7 @@ class MembersControllerTest < ActionController::TestCase
 
   test 'should update member' do
     patch :update, id: @member, member: { address: @member.address, birthdate: @member.birthdate, email: @member.email, female: @member.female, guardian_1: @member.guardian_1, guardian_1_email: @member.guardian_1_email, guardian_2: @member.guardian_2, guardian_2_email: @member.guardian_2_email, joined_on: @member.joined_on, left_on: @member.left_on, mobile: @member.mobile, name: @member.name, post_office: @member.post_office, postal_code: @member.postal_code }
-    assert_redirected_to member_path(assigns(:member))
+    assert_redirected_to edit_member_path(assigns(:member))
   end
 
   # test "should destroy member" do

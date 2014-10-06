@@ -1,25 +1,26 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3', engine: 'jruby', engine_version: '1.7.15'
-#ruby=jruby-1.7.15
+ruby '1.9.3', engine: 'jruby', engine_version: '1.7.16'
+#ruby=jruby-1.7.16
 
-gem 'rails', '~>4.1.5'
+gem 'rails', '~>4.1.6'
 
 gem 'activerecord-jdbcpostgresql-adapter'
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 gem 'bootstrap-sass'
 gem 'bootstrap3-datetimepicker-rails'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 gem 'exception_notification'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 gem 'jquery-rails'
 gem 'momentjs-rails'
 gem 'nprogress-rails'
 gem 'prawn'
 gem 'puma'
 gem 'rack-mini-profiler'
-gem 'rails-i18n' # , '~> 4.0.0' # For 4.0.x
-gem 'sass-rails', '~> 4.0.3'
+gem 'rails-i18n'
+gem 'sass-rails'
+gem 'schema_plus'
 gem 'therubyrhino'
 gem 'turbolinks'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
