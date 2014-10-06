@@ -16,12 +16,14 @@ class SessionsController < ApplicationController
         flash.now.alert = 'Innlogging feilet (ukjent bruker).'
       end
     end
+    @email = cookies[:login_email]
   end
 
   def send_email
     user = User.find_by_email(params[:email])
     if user
       UserMailer.login(user).deliver!
+      cookies.permanent[:login_email] = user.email
       redirect_to :log_in, notice: 'En e-post med innloggingslink er sendt til din e-postadresse.'
     else
       flash.now.alert = 'Ukjent e-postadresse'

@@ -2,13 +2,8 @@
   <div class="col-md-6 col-md-offset-3">
     <%=form_for :session do |f| %>
       <h2 class="form-signin-heading">Innlogging</h2>
-      <input name="email" type="email" class="form-control" placeholder="E-postadresse" required="" autofocus="" >
-
-      <!--<input type="password" class="form-control" placeholder="Passord" required="" autocomplete="off">-->
-      <!--<label class="checkbox">-->
-      <!--<input type="checkbox" value="remember-me"> Remember me-->
-      <!--</label>-->
-
+      <input id="email" name="email" type="email" class="form-control" value="<%=@email%>"
+             placeholder="E-postadresse" required="" autofocus="" >
       <br/>
 
       <button class="btn btn-lg btn-primary btn-block" type="submit">
