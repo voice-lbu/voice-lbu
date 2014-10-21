@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
     if user
       UserMailer.login(user).deliver!
       cookies.permanent[:login_email] = user.email
-      redirect_to :log_in, notice: 'En e-post med innloggingslink er sendt til din e-postadresse.'
+      redirect_to :log_in, notice: 'En e-post med innloggingslenke er sendt til din e-postadresse.'
     else
       flash.now.alert = 'Ukjent e-postadresse'
       render 'new'
