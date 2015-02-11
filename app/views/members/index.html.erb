@@ -27,7 +27,7 @@
 
   <tbody>
     <% @members.each do |member| %>
-      <tr onclick="window.location = '<%=edit_member_path(member)%>'">
+      <tr onclick="window.location = '<%=edit_member_path(member)%>'" style="cursor: pointer">
         <td><%= member.id %></td>
         <td><%= member.name %></td>
         <td><%= member.address %></td>

@@ -3,14 +3,13 @@ class SessionsController < ApplicationController
 
   def new
     if params[:id] && params[:hash]
-      if (user = User.find(params[:id]))
-        stored_hash = user.password_digest.split('.').first
-        if stored_hash == params[:hash]
+      if (user = User.find_by_id(params[:id]))
+        if user.authenticate(params[:hash])
           flash.alert = 'Innlogging OK.'
           session[:user_id] = user.id
           redirect_to root_path
         else
-          flash.now.alert = "Innlogging feilet (feil passord: #{stored_hash.inspect} != #{params[:hash].inspect})."
+          flash.now.alert = 'Innlogging feilet.'
         end
       else
         flash.now.alert = 'Innlogging feilet (ukjent bruker).'
@@ -34,19 +33,8 @@ class SessionsController < ApplicationController
   def await_email
   end
 
-  def create
-    user = User.authenticate(params[:email], params[:password])
-    if user
-      session[:user_id] = user.id
-      redirect_to root_url, :notice => 'Logget inn!'
-    else
-      flash.now.alert = 'Feil e-post eller passord.'
-      render 'new'
-    end
-  end
-
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, :notice => 'Logget ut!'
+    redirect_to root_url, notice: 'Logget ut!'
   end
 end

@@ -1,4 +1,19 @@
 <%= form_for(@member) do |f| %>
+
+    <div class="actions pull-right">
+      <%= f.submit 'Lagre', class: 'btn btn-primary' %>
+      <%= link_to('Faktura', {controller: 'members', action: 'faktura', id: @member.id},
+              class: 'btn btn-success') unless @member.new_record? %>
+    </div>
+
+    <h1>
+      <% if @member.new_record? %>
+          Innmelding
+      <% else %>
+          <h1>Medlem</h1>
+      <% end %>
+    </h1>
+
     <% if @member.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@member.errors.count, "error") %> prohibited this
@@ -48,30 +63,37 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="form-group">
-          <%= f.label :guardian_1, 'Foresatt 1' %><br>
-          <%= f.text_field :guardian_1, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :guardian_1_email, 'Foresatt 1 e-post' %><br>
-          <%= f.text_field :guardian_1_email, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :guardian_1_mobile %><br>
-          <%= f.text_field :guardian_1_mobile, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :guardian_2, 'Foresatt 2' %><br>
-          <%= f.text_field :guardian_2, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :guardian_2_email, 'Foresatt 2 e-post' %><br>
-          <%= f.text_field :guardian_2_email, class: 'form-control' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :guardian_2_mobile %><br>
-          <%= f.text_field :guardian_2_mobile, class: 'form-control' %>
-        </div>
+        <fieldset>
+          <legend>Foresatt 1</legend>
+          <div class="form-group">
+            <%= f.label :guardian_1, 'Navn' %>
+            <%= f.text_field :guardian_1, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :guardian_1_email, 'E-post' %>
+            <%= f.text_field :guardian_1_email, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :guardian_1_mobile, 'Telefon' %>
+            <%= f.text_field :guardian_1_mobile, class: 'form-control' %>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Foresatt 2</legend>
+          <div class="form-group">
+            <%= f.label :guardian_2, 'Navn' %>
+            <%= f.text_field :guardian_2, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :guardian_2_email, 'E-post' %>
+            <%= f.text_field :guardian_2_email, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :guardian_2_mobile, 'Telefon' %>
+            <%= f.text_field :guardian_2_mobile, class: 'form-control' %>
+          </div>
+        </fieldset>
       </div>
       <div class="col-md-4">
         <div class="row">
@@ -107,12 +129,5 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="actions">
-      <%= f.submit 'Lagre', class: 'btn btn-primary' %>
-      <%#= link_to('Vis', @member, class: 'btn btn-default') unless @member.new_record? %>
-      <%#= link_to 'Tilbake', active_members_path, class: 'btn btn-default' %>
-      <%= link_to('Faktura', {controller: 'members', action: 'faktura', id: @member.id},
-              class: 'btn btn-success') unless @member.new_record? %>
     </div>
 <% end %>

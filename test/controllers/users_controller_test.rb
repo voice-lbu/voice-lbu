@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
@@ -19,13 +20,19 @@ class UsersControllerTest < ActionController::TestCase
 
   test 'should create user' do
     assert_difference('User.count') do
-      post :create, user: {email: 'rookie@example.org', name: 'Rookie',
-              password_digest: @user.password_digest,
-              password_salt: @user.password_salt, phone: @user.phone}
+      post :create, user: {email: 'rookie@example.org', name: 'Rookie'}
       assert_no_errors :user
     end
-
     assert_redirected_to user_path(assigns(:user))
+  end
+
+  test 'should not create user without email' do
+    assert_no_difference('User.count') do
+      post :create, user: {name: 'Rookie'}
+      assert_equal ['Email kan ikke være blank'],
+          assigns(:user).errors.full_messages
+    end
+    assert_response :success
   end
 
   test 'should show user' do
@@ -42,6 +49,13 @@ class UsersControllerTest < ActionController::TestCase
     patch :update, id: @user, user: {email: @user.email, name: @user.name, password_digest: @user.password_digest, password_salt: @user.password_salt, phone: @user.phone}
     assert_no_errors :user
     assert_redirected_to user_path(assigns(:user))
+  end
+
+  test 'should not update user with blank email' do
+    patch :update, id: @user, user: {email: nil, name: @user.name, phone: @user.phone}
+    assert_equal ['Email kan ikke være blank'],
+        assigns(:user).errors.full_messages
+    assert_response :success
   end
 
   test 'should destroy user' do

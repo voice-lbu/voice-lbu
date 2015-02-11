@@ -1,3 +1,13 @@
+require 'simplecov'
+SimpleCov.start('rails') do
+  # FIXME(uwe): Remove these filters when SimpleCov+JRuby report correct coverage
+  if RUBY_PLATFORM == 'java'
+  #   add_filter '/app/assets/'
+    add_filter '/app/views/'
+  end
+  # EMXIF
+end
+
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'

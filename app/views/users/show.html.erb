@@ -1,20 +1,20 @@
-<p id="notice"><%= notice %></p>
+<table class="table table-striped">
+  <tr>
+    <th>Name:</th>
+    <td><%= @user.name %></td>
+  </tr>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+  <tr>
+    <th>Email:</th>
+    <td><%= @user.email %></td>
+  </tr>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <tr>
+    <th>Phone:</th>
+    <td><%= @user.phone %></td>
+  </tr>
+</table>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @user.phone %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Back', users_path %>
+<%= link_to 'Endre', edit_user_path(@user), class: 'btn btn-default' %>
+<%= link_to 'Destroy', @user, method: :delete, data: {confirm: 'Er du sikker på at du vil slette denne brukeren?'}, class: 'btn btn-danger' %>
+<%= link_to 'Tilbake', users_path, class: 'btn btn-default' %>
