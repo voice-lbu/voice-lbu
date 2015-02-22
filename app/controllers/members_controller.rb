@@ -10,7 +10,7 @@ class MembersController < ApplicationController
 
   def active
     @members = Member.active.to_a
-    @layout_emails = @members.map{|m|[m.email, m.guardian_1_email, m.guardian_2_email]}.flatten.compact
+    @layout_emails = @members.map{|m|[m.email, m.guardian_1_email, m.guardian_2_email]}.flatten.reject(&:blank?)
     render :index
   end
 
