@@ -2,7 +2,8 @@ class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
 
   def index
-    @members ||= Member.all.to_a
+    @members ||= Member.all
+    @members = @members.order(:name).to_a
     @left = @members.any? { |m| m.left_on.present? }
     @show_phone = @members.any? { |m| m.phone.present? }
     @show_guardian_2 = @members.any? { |m| m.guardian_2.present? || m.guardian_2_email.present? || m.guardian_2_mobile.present? }
@@ -13,12 +14,12 @@ class MembersController < ApplicationController
   end
 
   def active
-    @members = Member.active.to_a
+    @members = Member.active
     index
   end
 
   def left
-    @members = Member.left.to_a
+    @members = Member.left
     index
   end
 
