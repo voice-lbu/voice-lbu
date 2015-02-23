@@ -29,7 +29,7 @@
       <tr onclick="window.location = '<%=edit_member_path(member)%>'" style="cursor: pointer">
         <td><%= member.id %></td>
         <td>
-          <%= member.name %><br/>
+          <strong><%= member.name %></strong><br/>
           <%= member.address %><br/>
           <%= member.postal_code %> <%= member.post_office %>
         </td>
