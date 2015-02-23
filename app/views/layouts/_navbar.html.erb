@@ -18,9 +18,6 @@
             <li class="<%= :active if params[:controller] == 'members' && params[:action] == 'index' %>"><%= link_to 'Alle', controller: :members, action: :index %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <% if @layout_emails %>
-                <%= mail_to @layout_emails.join(','), 'Send e-post', subject: '[Voice] ', body: "Hei!\n\n", class: 'navbar-left navbar-btn btn btn-primary' %>
-            <% end %>
             <%= link_to 'Nytt medlem', new_member_path, class: 'navbar-left navbar-btn btn btn-primary' %>
             <% if current_user.email == 'uwe@kubosch.no' %>
                 <li class="<%= :active if params[:controller] == 'users' %>"><%= link_to 'Brukere', controller: :users, action: :index %></li>

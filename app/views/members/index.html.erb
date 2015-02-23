@@ -1,12 +1,12 @@
+<%= mail_to @emails.join(','), 'Send e-post', subject: '[Voice] ', body: "Hei!\n\n", class: 'navbar-left navbar-btn btn btn-primary pull-right' %>
+
 <h1>Medlemmer (<%=@members.size %>)</h1>
 
 <table class="table table-condensed table-hover table-striped">
   <thead>
     <tr>
       <th>Medlems-nummer</th>
-      <th>Navn</th>
-      <th>Adresse</th>
-      <th>Poststed</th>
+      <th>Navn / Adresse</th>
       <th>Fødselsdato</th>
       <!--<th>Mobil</th>-->
       <% if @show_phone %>
@@ -29,9 +29,11 @@
     <% @members.each do |member| %>
       <tr onclick="window.location = '<%=edit_member_path(member)%>'" style="cursor: pointer">
         <td><%= member.id %></td>
-        <td><%= member.name %></td>
-        <td><%= member.address %></td>
-        <td><%= member.postal_code %> <%= member.post_office %></td>
+        <td>
+          <%= member.name %><br/>
+          <%= member.address %><br/>
+          <%= member.postal_code %> <%= member.post_office %>
+        </td>
         <td><%= member.birthdate %></td>
         <!--<td><%= member.mobile %></td>-->
         <% if @show_phone %>
@@ -45,12 +47,12 @@
         <!--<td><%= member.email %></td>-->
         <td><%= member.guardian_1 %><br/>
         <%= member.guardian_1_mobile %><br/>
-        <%= member.guardian_1_email %></td>
+        <%= mail_to member.guardian_1_email, nil, subject: '[Voice] ' %></td>
         <% if @show_guardian_2 %>
             <td>
               <%= member.guardian_2 %><br/>
               <%= member.guardian_2_mobile %><br/>
-              <%= member.guardian_2_email %>
+              <%= mail_to member.guardian_2_email %>
             </td>
         <% end %>
         <!--<td><%= link_to 'Show', member %></td>-->

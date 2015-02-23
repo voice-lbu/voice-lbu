@@ -2,24 +2,24 @@ class MembersController < ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
 
   def index
-    @members = Member.all.to_a
-    @left = true
-    @show_phone = @members.any? { |m| !m.phone.blank? }
-    @show_guardian_2 = @members.any? { |m| !m.guardian_1.blank? || !m.guardian_1_email.blank? || !m.guardian_1_mobile.blank? }
-  end
-
-  def active
-    @members = Member.active.to_a
-    @layout_emails = @members.
+    @members ||= Member.all.to_a
+    @left = @members.any? { |m| m.left_on.present? }
+    @show_phone = @members.any? { |m| m.phone.present? }
+    @show_guardian_2 = @members.any? { |m| m.guardian_2.present? || m.guardian_2_email.present? || m.guardian_2_mobile.present? }
+    @emails = @members.
         map { |m| [m.email, m.guardian_1_email, m.guardian_2_email] }.flatten.
         reject(&:blank?).map(&:strip)
     render :index
   end
 
+  def active
+    @members = Member.active.to_a
+    index
+  end
+
   def left
     @members = Member.left.to_a
-    @left = true
-    render :index
+    index
   end
 
   def show
