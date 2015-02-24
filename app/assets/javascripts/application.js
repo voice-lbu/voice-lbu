@@ -14,6 +14,6 @@ NProgress.configure
   speed: 500
 
 $().ready(function () {
-    $('.date').datetimepicker({format: 'YYYY-MM-DD', pickTime: false});
-    $('.datetime').datetimepicker({format: 'YYYY-MM-DD H.mm'});
+    $('.date').datetimepicker({format: 'YYYY-MM-DD'});
+    $('.datetime').datetimepicker({format: 'YYYY-MM-DD H:mm'});
 });

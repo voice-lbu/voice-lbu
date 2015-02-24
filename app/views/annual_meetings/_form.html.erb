@@ -1,0 +1,29 @@
+<%= form_for(@annual_meeting) do |f| %>
+    <% if @annual_meeting.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@annual_meeting.errors.count, "error") %> prohibited
+            this annual_meeting from being saved:</h2>
+
+          <ul>
+            <% @annual_meeting.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="row col-md-6">
+      <div class="form-group">
+        <%= f.label :start_at, 'Tidspunkt' %>
+        <%= f.text_field :start_at, class: 'form-control datetime' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :fee, 'Ny semesteravgift' %>
+        <%= f.number_field :fee, class: 'form-control' %>
+      </div>
+      <div class="actions">
+        <%= f.submit 'Lagre', class: 'btn btn-primary' %>
+        <%= link_to 'Tilbake', annual_meetings_path, class: 'btn btn-default' %>
+      </div>
+    </div>
+<% end %>

@@ -1,20 +1,20 @@
 # encoding: utf-8
 require 'prawn/measurement_extensions'
 
-class Invoice
+class Invoice < ActiveRecord::Base
   ORGANIZATION = 'Voice Barne- og Ungdomskor'
   ADDRESS = 'Håkons vei 73C'
   POST_ADDRESS = '1470 LØRENSKOG'
-  PRICE = '750'
   INVOICE_DATE = Date.today
   DUE_DATE = 14.days.from_now
 
-  def initialize(member)
-    @member = member
-  end
+  belongs_to :member
+
+  validates_presence_of :member, :member_id
 
   def pdf
-    member = @member
+    member = self.member
+    amount = self.amount
     invoice_no = invoice_num
     Prawn::Document.new page_size: 'A4', page_layout: :portrait,
         bottom_margin: 0.0.cm, left_margin: 0.0.cm do
@@ -54,8 +54,8 @@ class Invoice
 
     draw_text 'Semesteravgift', at: [20.mm, height.mm]
     draw_text '1', at: [120.mm, height.mm]
-    draw_text "kr #{'%6.2f' % PRICE}", at: [140.mm, height.mm]
-    draw_text "kr #{'%6.2f' % PRICE}", at: [180.mm, height.mm]
+    draw_text "kr #{'%6.2f' % amount}", at: [140.mm, height.mm]
+    draw_text "kr #{'%6.2f' % amount}", at: [180.mm, height.mm]
     height -= 5
 
     height += 2
@@ -65,7 +65,7 @@ class Invoice
       height -= 6
 
     draw_text 'Delsum', fontsize: 10, style: :bold, at: [140.mm, height.mm]
-    draw_text 'kr ' + '%6.2f' % PRICE, fontsize: 10, style: :bold, at: [180.mm, height.mm]
+    draw_text 'kr ' + '%6.2f' % amount, fontsize: 10, style: :bold, at: [180.mm, height.mm]
     height -= 5
 
     # draw_text 'MVA 25%', at: [140.mm, height.mm]
@@ -73,14 +73,14 @@ class Invoice
     # height -= 5
 
     # draw_text 130, height, 'Shipping')
-    # draw_text 170, height, "kr #{'%6.2f' % @order.shipping_price}")
+    # draw_text 170, height, "kr #{'%6.2f' % @order.shipping_amount}")
     # height -= 5
 
     draw_text "TOTALT", bold: true, at: [140.mm, height.mm]
-    draw_text "kr #{'%6.2f' % PRICE}", at: [180.mm, height.mm]
+    draw_text "kr #{'%6.2f' % amount}", at: [180.mm, height.mm]
     height -= 5
 
-    draw_text "kr #{'%.2f' % PRICE}", at: [92.mm, 106.mm]
+    draw_text "kr #{'%.2f' % amount}", at: [92.mm, 106.mm]
 
     draw_text DUE_DATE.strftime('%d.%m.%Y'), at: [173.mm, 95.mm]
 
@@ -99,7 +99,7 @@ class Invoice
     draw_text POST_ADDRESS, at: [115.mm, 50.mm]
 
     height = 22
-    draw_text PRICE, at: [85.mm, height.mm]
+    draw_text amount, at: [85.mm, height.mm]
     draw_text '00', at: [107.mm, height.mm]
     draw_text '1310 26 29765', at: [132.mm, height.mm]
 
@@ -107,10 +107,10 @@ class Invoice
   end
 
   def invoice_num
-    @member.id + 20
+    id
   end
 
   def title
-    "Faktura #{'%04d' % invoice_num} #{@member.name}"
+    "Faktura #{'%04d' % invoice_num} #{member.name}"
   end
 end

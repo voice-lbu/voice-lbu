@@ -1,6 +1,8 @@
 class Member < ActiveRecord::Base
-  scope :active, ->{where left_on: nil}
-  scope :left, ->{where 'left_on IS NOT NULL'}
+  has_many :invoices, -> { order :created_at, :sent_at }
+
+  scope :active, -> { where left_on: nil }
+  scope :left, -> { where 'left_on IS NOT NULL' }
 
   validates_presence_of :joined_on, :name
 
@@ -9,5 +11,9 @@ class Member < ActiveRecord::Base
     age = date.year - birthdate.year
     age -= 1 if date < birthdate + age.years
     age
+  end
+
+  def emails
+    [email, guardian_1_email, guardian_2_email].reject(&:blank?).map(&:strip)
   end
 end

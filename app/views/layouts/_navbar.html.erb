@@ -19,6 +19,8 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <%= link_to 'Nytt medlem', new_member_path, class: 'navbar-left navbar-btn btn btn-primary' %>
+            <li class="<%= :active if params[:controller] == 'annual_meetings' %>"><%= link_to 'Årsmøte', controller: :annual_meetings, action: :index %></li>
+            <li class="<%= :active if params[:controller] == 'invoices' %>"><%= link_to 'Faktura', controller: :invoices, action: :index %></li>
             <% if current_user.email == 'uwe@kubosch.no' %>
                 <li class="<%= :active if params[:controller] == 'users' %>"><%= link_to 'Brukere', controller: :users, action: :index %></li>
                 <li class="<%= :active if params[:controller] == 'reports' %>"><%= link_to 'Rapport', controller: :reports, action: :index %></li>
@@ -26,6 +28,7 @@
             <li><%= link_to 'Logg ut', controller: :sessions, action: :destroy %></li>
           </ul>
       <% end %>
-    </div><!--/.nav-collapse -->
+    </div>
+    <!--/.nav-collapse -->
   </div>
 </div>

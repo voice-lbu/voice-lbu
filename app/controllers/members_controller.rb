@@ -7,9 +7,7 @@ class MembersController < ApplicationController
     @left = @members.any? { |m| m.left_on.present? }
     @show_phone = @members.any? { |m| m.phone.present? }
     @show_guardian_2 = @members.any? { |m| m.guardian_2.present? || m.guardian_2_email.present? || m.guardian_2_mobile.present? }
-    @emails = @members.
-        map { |m| [m.email, m.guardian_1_email, m.guardian_2_email] }.flatten.
-        reject(&:blank?).map(&:strip)
+    @emails = @members.map(&:emails).flatten
     render :index
   end
 
@@ -27,8 +25,23 @@ class MembersController < ApplicationController
   end
 
   def faktura
-    @member = Member.find(params[:id])
-    invoice = Invoice.new(@member)
+    last_annual_meeting = AnnualMeeting.order(:start_at).last
+    unless last_annual_meeting
+      redirect_to new_annual_meeting_path
+      return
+    end
+    unless last_annual_meeting.fee
+      redirect_to edit_annual_meeting_path(last_annual_meeting)
+      return
+    end
+    member = Member.find(params[:id])
+    last_invoice = member.invoices.last
+    if last_invoice.nil? || last_invoice.created_at < 3.months.ago
+      invoice = Invoice.create! member_id: member.id, amount: last_annual_meeting.fee
+      flash.notice = "Opprettet og sender ny faktura for #{member.name}"
+    else
+      invoice = last_invoice
+    end
     pdf = invoice.pdf
     send_data pdf, filename: "#{invoice.title.gsub(/ |\/|\\/, '_')}.pdf",
         type: 'application/pdf'

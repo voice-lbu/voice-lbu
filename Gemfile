@@ -21,6 +21,7 @@ gem 'puma'
 gem 'rack-mini-profiler'
 gem 'rails-i18n'
 gem 'rails_12factor'
+gem 'rufus-scheduler'
 gem 'sass-rails'
 gem 'schema_plus'
 gem 'therubyrhino'
@@ -28,5 +29,6 @@ gem 'turbolinks'
 gem 'uglifier'
 
 group :test do
+  gem 'minitest-reporters'
   gem 'simplecov'
 end

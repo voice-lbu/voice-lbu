@@ -1,0 +1,39 @@
+<div class="actions pull-right">
+<%= render 'invoices_button' %>
+<%= link_to 'Ny faktura', new_invoice_path, class: 'btn btn-primary' %>
+</div>
+
+<h1>Fakturaer</h1>
+
+<% @invoices.group_by { |i| i.created_at.year }.each do |year, invoices| %>
+
+    <h2><%= year %></h2>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Fakturanummer</th>
+        <th>Medlem</th>
+        <th>Beløp</th>
+        <th>Sent</th>
+        <th>Betalt</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% invoices.each do |invoice| %>
+          <tr>
+            <td><%= invoice.id %></td>
+            <td><%= link_to invoice.member.name, edit_member_path(invoice.member) %></td>
+            <td><%= invoice.amount %></td>
+            <td><%= invoice.sent_at %></td>
+            <td><%= invoice.paid_at %></td>
+            <td><%= link_to 'Show', invoice %></td>
+            <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+            <td><%= link_to 'Destroy', invoice, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+<% end %>

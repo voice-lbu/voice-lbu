@@ -1,0 +1,18 @@
+<div class="actions pull-right">
+  <%= render 'invoices/invoices_button' %>
+</div>
+
+<h1>Årsmøte</h1>
+
+<p>
+  <strong>Tid:</strong>
+  <%= @annual_meeting.start_at.to_s(:db) %>
+</p>
+
+<p>
+  <strong>Ny semesteravgift:</strong>
+  <%= @annual_meeting.fee %>
+</p>
+
+<%= link_to 'Rediger', edit_annual_meeting_path(@annual_meeting), class: 'btn btn-primary' %>
+<%= link_to 'Tilbake', annual_meetings_path, class: 'btn btn-default' %>

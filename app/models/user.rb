@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   def authenticate(hash)
     password_digest.split('.').first == hash
   end
+
+  def emails
+    [email]
+  end
 end

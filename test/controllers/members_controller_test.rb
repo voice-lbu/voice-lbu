@@ -27,7 +27,6 @@ class MembersControllerTest < ActionController::TestCase
   test 'should get invoice' do
     get :faktura, id: users(:one).id
     assert_response :success
-    assert_not_nil assigns(:member)
   end
 
   test 'should get new' do

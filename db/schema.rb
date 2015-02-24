@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904105156) do
+ActiveRecord::Schema.define(version: 20150224080952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "annual_meetings", force: true do |t|
+    t.datetime "start_at",   null: false
+    t.integer  "fee"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "members", force: true do |t|
     t.string   "name",              limit: 64, null: false
@@ -36,6 +43,17 @@ ActiveRecord::Schema.define(version: 20140904105156) do
     t.string   "guardian_2_mobile", limit: 16
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "invoices", force: true do |t|
+    t.integer  "member_id",  null: false
+    t.integer  "amount",     null: false
+    t.datetime "sent_at"
+    t.datetime "paid_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["member_id"], :name => "fk__invoices_member_id"
+    t.foreign_key ["member_id"], "members", ["id"], :on_update => :no_action, :on_delete => :no_action, :name => "fk_invoices_member_id"
   end
 
   create_table "users", force: true do |t|

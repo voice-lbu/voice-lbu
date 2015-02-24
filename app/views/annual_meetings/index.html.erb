@@ -1,0 +1,27 @@
+<h1>Listing annual_meetings</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Dato og tid</th>
+      <th>Ny medlemsavgift</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @annual_meetings.each do |annual_meeting| %>
+      <tr>
+        <td><%= annual_meeting.start_at %></td>
+        <td><%= annual_meeting.fee %></td>
+        <td><%= link_to 'Show', annual_meeting %></td>
+        <td><%= link_to 'Edit', edit_annual_meeting_path(annual_meeting) %></td>
+        <td><%= link_to 'Destroy', annual_meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Annual meeting', new_annual_meeting_path %>
