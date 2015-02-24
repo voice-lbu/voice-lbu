@@ -1,20 +1,22 @@
+<h1>Bruker</h1>
+
 <table class="table table-striped">
   <tr>
-    <th>Name:</th>
+    <th>Navn:</th>
     <td><%= @user.name %></td>
   </tr>
 
   <tr>
-    <th>Email:</th>
-    <td><%= @user.email %></td>
+    <th>E-post:</th>
+    <td><%= mail_to @user.email, nil, subject: '[Voice] ' %></td>
   </tr>
 
   <tr>
-    <th>Phone:</th>
+    <th>Telefon:</th>
     <td><%= @user.phone %></td>
   </tr>
 </table>
 
-<%= link_to 'Endre', edit_user_path(@user), class: 'btn btn-default' %>
-<%= link_to 'Destroy', @user, method: :delete, data: {confirm: 'Er du sikker på at du vil slette denne brukeren?'}, class: 'btn btn-danger' %>
+<%= link_to 'Endre', edit_user_path(@user), class: 'btn btn-primary' %>
+<%= link_to 'Slett', @user, method: :delete, data: {confirm: 'Er du sikker på at du vil slette denne brukeren?'}, class: 'btn btn-danger' %>
 <%= link_to 'Tilbake', users_path, class: 'btn btn-default' %>
