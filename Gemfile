@@ -1,11 +1,19 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3', engine: 'jruby', engine_version: '1.7.19'
-#ruby=jruby-1.7.19
+ruby '2.4.9'
 
-gem 'rails', '~>4.1.6'
+gem 'rails', '~>4.2.0'
 
-gem 'activerecord-jdbcpostgresql-adapter'
+platform :jruby do
+  gem 'activerecord-jdbcpostgresql-adapter'
+  gem 'therubyrhino'
+end
+
+platform :ruby do
+  gem 'pg', '<1'
+  gem 'therubyracer'
+end
+
 gem 'bcrypt'
 gem 'bootstrap-sass'
 gem 'bootstrap3-datetimepicker-rails'
@@ -24,7 +32,6 @@ gem 'rails_12factor'
 gem 'rufus-scheduler'
 gem 'sass-rails'
 gem 'schema_plus'
-gem 'therubyrhino'
 gem 'turbolinks'
 gem 'uglifier'
 

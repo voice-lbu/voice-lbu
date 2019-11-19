@@ -11,7 +11,7 @@ class SessionsControllerTest < ActionController::TestCase
   test 'sending email with wrong email' do
     post :send_email, email: 'invalid@example.org'
     assert_response :success
-    assert_equal nil, cookies[:login_email]
+    assert_nil cookies[:login_email]
     assert_equal 'Ukjent e-postadresse', flash[:alert]
   end
 
@@ -19,7 +19,7 @@ class SessionsControllerTest < ActionController::TestCase
     cookies[:login_email] = 'one@example.org'
     get :new
     assert_response :success
-    assert_equal 'one@example.org', css_select('#email')[0].attributes['value']
+    assert_equal 'one@example.org', css_select('#email')[0].attributes['value'].to_s
   end
 
   test 'login by link with id and hash' do
