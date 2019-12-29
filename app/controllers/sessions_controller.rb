@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   def send_email
     user = User.find_by_email(params[:email])
     if user
-      UserMailer.login(user).deliver!
+      UserMailer.login(user).deliver_later!
       cookies.permanent[:login_email] = user.email
       redirect_to :log_in, notice: 'En e-post med innloggingslenke er sendt til din e-postadresse.'
     else
