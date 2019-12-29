@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.4.9'
+ruby File.read("#{__dir__}/.ruby-version")[5..-1]
 
 gem 'rails', '~>4.2.0'
 
